@@ -1,6 +1,5 @@
-use std::fs::File;
-use std::io::{self, BufRead, BufReader};
-use std::path::Path;
+use std::io::{self, BufRead};
+use crate::utils;
 
 /**Main function to solve the problem the arguments are:
 @convert: if true, the function will convert the words to digits
@@ -8,9 +7,7 @@ use std::path::Path;
 */
 pub(crate) fn solve(path: &str, convert: bool) -> io::Result<u16> {
 
-    let path = Path::new(path);
-    let file = File::open(&path)?;
-    let reader = BufReader::new(file);
+    let reader = utils::open_file(path)?;
 
     //processes the lines of the file, and converts them to the desired format
     //and then sums the values
